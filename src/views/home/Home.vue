@@ -10,7 +10,7 @@
       class="tabControlwk"
       ></tab-control>
 
-    <scroll class="content" ref="Homescroll" :probe-type='3' @scroll="contentscroll" :pull-up-load="true" @pullingUp="imagLoad">
+    <scroll class="content" ref="Homescroll" :probe-type='3' :pull-up-load="true"  @scroll="contentscroll" @pullingUp="imagLoad">
       <home-swiper :banners="banners" ref="hSwiper" @loadswiperimg='loadswiperimg'>
       </home-swiper>
       <home-recommends :recommends="recommends"></home-recommends>
@@ -156,7 +156,6 @@ export default {
       getHomeMultidata().then(res => {
       // 将端口数据存入 data中的result中
       this.result = res
-
       this.banners = res.data.data.banner.list;
       this.recommends = res.data.data.recommend.list;
     }) 
@@ -178,7 +177,7 @@ export default {
       return this.goods[this.currentType].list
     }
   },
-
+// 这个要注意？？？？
   activated() {
     // 刷新  下面
     this.$refs.Homescroll.refresh()
@@ -216,12 +215,6 @@ export default {
   top:44px;
   background-color: #fff;
 }
-.content{
-  height: calc(100% - 93px);
-  /* margin-top: 44px; */
-  /* height:100%; */
-  overflow: hidden;
-}
 .tabControlwk{
   position:fixed;
   z-index: 9;
@@ -229,4 +222,11 @@ export default {
   left: 0;
   background-color: white;
 }
+.content{
+  height: calc(100% - 93px);
+  /* margin-top: 44px; */
+  /* height:100%; */
+  overflow: hidden;
+}
+
 </style>
